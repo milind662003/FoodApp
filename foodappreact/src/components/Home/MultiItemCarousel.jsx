@@ -14,6 +14,16 @@ const MultiItemCarousel = () => {
     autoplay: true,
     autoplaySpeed:2000,
     arrows: false,
+
+    responsive: [
+      {
+        breakpoint: 768, 
+        settings: {
+          slidesToShow: 2, 
+          slidesToScroll: 1,
+        },
+      },
+    ]
   };
 
   return (

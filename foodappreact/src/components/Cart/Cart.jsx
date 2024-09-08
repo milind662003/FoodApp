@@ -5,10 +5,10 @@ import AddressCard from './AddressCard'
 import { Button, Card } from '@mui/material'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import Box from '@mui/material/Box';
-import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { Field, Form, Formik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { createOrder } from '../State/Order/Action'
-// import * as Yup from 'yup'
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
 export const style = {
   position: 'absolute',
@@ -28,12 +28,7 @@ const initialValues = {
   city:""
 }
 
-// const validationSchema = Yup.object.shape({
-//   streetAddress:Yup.string().required("Street address is required"),
-//   state:Yup.string().required("State is required"),
-//   pincode:Yup.string().required("Pincode is required"),
-//   city:Yup.string().required("City is required")
-// })
+
 
 const Cart = () => {
   const createOrderUsingSelectedAddress = () => {
@@ -62,7 +57,7 @@ const Cart = () => {
     console.log("form value", values)
   }
   return (
-    <div>
+    auth.user? (<div>
       <main className="lg:flex justify-between">
         <section className='lg:w-[30%] space-y-6 lg:min-h-screen pt-10'>
             {cart.cartItems.map((item) => <CartItem item={item}/>)}
@@ -117,7 +112,6 @@ const Cart = () => {
       >
         <Box sx={style}>
           <Formik initialValues={initialValues}
-          // validationSchema={validationSchema}
           onSubmit={handleSubmit}>
             <Form>
               <Grid container spacing={2}>
@@ -128,12 +122,6 @@ const Cart = () => {
                 label="Street Address"
                 fullWidth
                 variant="outlined"
-                // error={!ErrorMessage("streetAddress")}
-                // helperText = {
-                //   <ErrorMessage>
-                //     {(msg) => <span className='text-red-600'></span>}
-                //   </ErrorMessage>
-                // }
                 />
               </Grid>
               <Grid item xs = {12}>
@@ -143,12 +131,6 @@ const Cart = () => {
                 label="State"
                 fullWidth
                 variant="outlined"
-                // error={!ErrorMessage("streetAddress")}
-                // helperText = {
-                //   <ErrorMessage>
-                //     {(msg) => <span className='text-red-600'></span>}
-                //   </ErrorMessage>
-                // }
                 />
               </Grid>
               <Grid item xs = {12}>
@@ -158,12 +140,6 @@ const Cart = () => {
                 label="City"
                 fullWidth
                 variant="outlined"
-                // error={!ErrorMessage("streetAddress")}
-                // helperText = {
-                //   <ErrorMessage>
-                //     {(msg) => <span className='text-red-600'></span>}
-                //   </ErrorMessage>
-                // }
                 />
               </Grid>
               <Grid item xs = {12}>
@@ -173,12 +149,6 @@ const Cart = () => {
                 label="Pincode"
                 fullWidth
                 variant="outlined"
-                // error={!ErrorMessage("streetAddress")}
-                // helperText = {
-                //   <ErrorMessage>
-                //     {(msg) => <span className='text-red-600'></span>}
-                //   </ErrorMessage>
-                // }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -189,7 +159,9 @@ const Cart = () => {
           </Formik>
         </Box>
       </Modal>
-    </div>
+    </div>) : (<div className="flex items-center flex-col justify-center min-h-screen text-gray-300">
+      <RemoveShoppingCartIcon sx={{fontSize:"10rem"}}/>      
+    </div>)
   )
 }
 

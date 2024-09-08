@@ -30,7 +30,7 @@ export const Navbar = () => {
                         <SearchIcon sx={{fontSize:"1.5rem"}}/>
                     </IconButton>
                 </div>
-                <div className="">
+                <div className="cursor-pointer">
                     {auth.user?(<Avatar onClick={handleAvatarClick} sx={{bgcolor:"white", color:pink.A400}}>{auth.user?.fullName[0].toUpperCase()}</Avatar>):
                     (<IconButton onClick={()=>navigate("/account/login")}>
                         <Person/></IconButton>)}
